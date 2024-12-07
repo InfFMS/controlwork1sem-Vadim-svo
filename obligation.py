@@ -42,3 +42,38 @@
 #
 # -----------------------------------------------------------------------------
 # Напишите программу ниже:
+
+
+# Ввод данных от пользователя
+price_buy = float(input("Введите цену покупки облигации: "))
+price_pog = float(input("Введите цену погашения облигации: "))
+coupon_vip = float(input("Введите сумму разовой купонной выплаты: "))
+coupon_per = int(input("Введите периодичность выплаты купонов: "))
+broker_komis = float(input("Введите комиссию брокера: "))
+period_to_pogas = int(input("Введите период до погашения облигации: "))
+
+#Комиссия на покупку
+broker_fee = price_buy * (broker_komis / 100)
+
+#Полная цена покупки
+total_price_buy = price_buy + broker_fee
+
+#Общий купонный доход
+total_coupon_income = coupon_vip * (period_to_pogas / coupon_per)
+
+#Общий доход до налогообложения
+total_income = price_pog + total_coupon_income - total_price_buy
+
+#Налог на доход
+if total_income > 0:
+    tax = total_income * 0.13  # 13% налог
+else:
+    tax = 0
+
+#Чистая доходность
+net_yield = (total_income - tax) / total_price_buy * 100
+
+# Вывод результата
+print(f"Чистая доходность облигации: {net_yield:.2f}%")
+
+
